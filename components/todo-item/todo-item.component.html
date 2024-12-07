@@ -1,1 +1,6 @@
-<p>todo-item works!</p>
+<!-- <p>todo-item works!</p> -->
+<li appHighlightCompletedVideo [isCompleted]="todo().completed" class="todos__item">
+  <!-- (change)="this.todoClicked()" => Whenever the input value is changed we emit this toggle -->
+  <input id="todo__{{todo().id}}" type="checkbox" [checked]="todo().completed" (change)="this.todoClicked()"> // Here [value] = "todo().completed is changed to [checked]="todo().completed"
+  <label for="todo__ {{todo().id}}">{{todo().title | uppercase}}</label>
+</li>

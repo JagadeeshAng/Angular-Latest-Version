@@ -1,1 +1,43 @@
-<p>todos works!</p>
+<!-- <p>todos works!</p> -->
+<!-- <p> {{ todoService.todoItems[0].title }}</p>  -->
+<!-- Todo items with signal  -->
+ <!-- <p> {{ todoItems()[0].title}}</p> -->
+  <!-- using @for loop to iterate all the items in the array -->
+<h3>Todos List</h3>
+<!-- Old ngif syntax to display -->
+<!-- <p *ngIf="!todoItems().length"></p> -->
+<!-- Old ngif syntax to display -->
+ <!-- New ngif Syntax to Display  -->
+  @if (!todoItems().length) {
+    <p>Loading</p>
+  }
+  
+  <form>
+    <label>Filter Todos</label>
+    <input name="searchTerm" [(ngModel)]="searchTerm" placeholder="Search for Todos ......" />
+  </form>
+  
+  <!-- New ngif Syntax to Display  -->
+
+  <!-- This is to display as normal for UI  -->
+  <!-- @for (todo of todoItems(); track todo.id) {
+    <p>{{todo.title}}</p> -->
+<!-- } -->
+    <!-- This is to display as normal for UI  -->
+     <!-- This is to Display as List Item -->
+     <!-- <ul class="todos"> -->
+     <!-- @for(todo of todoItems(); track todo.id) {
+      <li class="todos__item">
+        <input id="todo__{{todo.id}}" type="checkbox" [value]="todo.completed"> 
+        <label for="todo__ {{todo.id}}">{{todo.title}}</label>
+      </li>
+     } -->
+      <!-- This is to Display as List Item -->
+       <!-- This is Directives  -->
+       <ul class="todos">
+        @for (todo of todoItems() | filterTodos : searchTerm(); track todo.id) {
+          <app-todo-item (todoToggled)="updateTodoItem($event)" [todo]="todo" />
+        }
+        <!-- This is Directives  -->
+</ul>
+   
